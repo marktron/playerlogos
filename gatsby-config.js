@@ -1,11 +1,13 @@
+require('dotenv').config()
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
-    author: `Kyle Mathews`,
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    title: `Player Logos`,
+    author: `Mark Allen`,
+    description: `Athlete logos`,
+    siteUrl: `https://playerlogos.com/`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `moustache`,
     },
   },
   plugins: [
@@ -21,6 +23,14 @@ module.exports = {
       options: {
         path: `${__dirname}/content/assets`,
         name: `assets`,
+      },
+    },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `${process.env.CONTENTFUL_SPACE_ID}`,
+        accessToken: `${process.env.CONTENTFUL_ACCESS_TOKEN}`,
+        downloadLocal: true,
       },
     },
     {
