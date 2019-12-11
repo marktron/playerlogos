@@ -1,5 +1,6 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
+// import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import styled from "styled-components"
@@ -35,22 +36,33 @@ const LogoGrid = styled("div")(
 LogoGrid.defaultProps = {
   display: "flex",
   flexDirection: "row",
+  flexWrap: "wrap",
   justifyContent: "space-between",
+  maxWidth: 1200,
+  mx: "auto",
 }
-const LogoTile = styled("div")(
+const LogoTile = styled("a")(
+  {
+    "&:hover": {
+      borderColor: "orange",
+    },
+  },
   compose(border, color, flexbox, layout, space, typography)
 )
 
 LogoTile.defaultProps = {
-  // border: "solid 1px black",
-  borderRadius: 4,
+  borderRadius: 6,
+  border: "solid 3px",
+  borderColor: "white",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   p: 4,
   m: 4,
   backgroundColor: "white",
+  color: "text",
 }
+
 const LogoImage = styled("div")(
   compose(border, color, flexbox, layout, space, typography)
 )
@@ -59,7 +71,17 @@ LogoImage.defaultProps = {
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
+  width: 200,
+  maxWidth: 200,
   flexGrow: 1,
+}
+
+const TileTitle = styled("div")(
+  compose(border, color, flexbox, layout, space, typography)
+)
+
+TileTitle.defaultProps = {
+  marginTop: 4,
 }
 
 class BlogIndex extends React.Component {
@@ -76,14 +98,21 @@ class BlogIndex extends React.Component {
           {logos.map(logo => {
             const currentPlayer = findPlayer(players, logo.node.id)
             return (
-              <LogoTile key={logo.node.id}>
+              <LogoTile
+                key={logo.node.id}
+                href={`/${currentPlayer.slug}`}
+                style={{
+                  boxShadow: `none`,
+                  textDecoration: `none`,
+                }}
+              >
                 <LogoImage>
                   <Image
                     fixed={logo.node.fixed}
                     alt={currentPlayer ? `Logo for ${currentPlayer.name}` : ""}
                   />
                 </LogoImage>
-                {currentPlayer && currentPlayer.name}
+                <TileTitle>{currentPlayer && currentPlayer.name}</TileTitle>
               </LogoTile>
             )
           })}
@@ -106,7 +135,7 @@ export const pageQuery = graphql`
       edges {
         node {
           id
-          fixed(width: 200) {
+          fixed(width: 200, height: 200, resizingBehavior: PAD) {
             base64
             tracedSVG
             aspectRatio
