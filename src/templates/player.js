@@ -3,14 +3,13 @@ import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import ImageGrid from "../components/image-grid"
 import { rhythm } from "../utils/typography"
-import Image from "gatsby-image"
 
 class PlayerTemplate extends React.Component {
   render() {
     const player = this.props.data.contentfulPlayer
     const siteTitle = this.props.data.site.siteMetadata.title
-    console.log("🔔 player",player)
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title={`${player.name} logos`} />
@@ -22,10 +21,7 @@ class PlayerTemplate extends React.Component {
         >
           {player.name}
         </h1>
-        <Image
-                    fixed={player.logo[0].fixed}
-                    // alt={currentPlayer ? `Logo for ${currentPlayer.name}` : ""}
-                  />
+        <ImageGrid images={player.logo} src="playerPage" players={[player]} />
         
       </Layout>
     )
@@ -46,7 +42,7 @@ export const pageQuery = graphql`
     name
     logo {
       id
-      fixed(width: 600, height: 600, resizingBehavior: PAD) {
+      fixed(width: 200, height: 200, resizingBehavior: PAD) {
         base64
         tracedSVG
         aspectRatio
