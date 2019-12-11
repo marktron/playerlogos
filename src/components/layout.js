@@ -50,6 +50,7 @@ const PageMain = styled("main")(
 
 PageMain.defaultProps = {
   flexGrow: 1,
+  p: 4
 }
 
 const PageFooter = styled("footer")(
