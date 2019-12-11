@@ -1,15 +1,15 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "Player Logos",
   "private": true,
   "description": "A starter for a blog powered by Gatsby and Markdown",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Mark Allen <mark@markallen.io>",
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/marktron/playerlogos/issues"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
-    "gatsby": "^2.18.10",
+    "gatsby": "^2.18.11",
     "gatsby-cli": "^2.8.18",
     "gatsby-image": "^2.2.36",
     "gatsby-plugin-feed": "^2.3.25",
