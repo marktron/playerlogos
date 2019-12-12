@@ -86,12 +86,13 @@ const ImageGrid = props => {
   return (
     <LogoGrid>
       {images.map(logo => {
-        const currentPlayer = players.length === 1
-          ? players[0]
-          : findPlayer(players, logo.node.id)
+        // Handle different formatting structure for index and player pages
+        const currentPlayer =
+          players.length === 1 ? players[0] : findPlayer(players, logo.node.id)
+        const currentPlayerLogo = logo.node ? logo.node : logo
         return (
           <LogoTile
-            key={logo.id ? logo.id : logo.node.id}
+            key={currentPlayerLogo.id}
             href={`/${currentPlayer.slug}`}
             style={{
               boxShadow: `none`,
@@ -99,10 +100,18 @@ const ImageGrid = props => {
             }}
           >
             <LogoImage>
-              <Image
-                fixed={logo.fixed ? logo.fixed : logo.node.fixed}
-                alt={currentPlayer ? `Logo for ${currentPlayer.name}` : ""}
-              />
+              {currentPlayerLogo.localFile.extension === "svg" ? (
+                // gatsby-image can't handle svg files
+                <img
+                  src={currentPlayerLogo.localFile.publicURL}
+                  alt={currentPlayer ? `Logo for ${currentPlayer.name}` : ""}
+                />
+              ) : (
+                <Image
+                  fixed={currentPlayerLogo.fixed}
+                  alt={currentPlayer ? `Logo for ${currentPlayer.name}` : ""}
+                />
+              )}
             </LogoImage>
             {src !== "playerPage" && (
               <TileTitle>{currentPlayer && currentPlayer.name}</TileTitle>

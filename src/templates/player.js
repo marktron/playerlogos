@@ -22,7 +22,6 @@ class PlayerTemplate extends React.Component {
           {player.name}
         </h1>
         <ImageGrid images={player.logo} src="playerPage" players={[player]} />
-        
       </Layout>
     )
   }
@@ -37,24 +36,28 @@ export const pageQuery = graphql`
         title
       }
     }
-    contentfulPlayer(slug: {eq: $slug}) {
-    id
-    name
-    logo {
+    contentfulPlayer(slug: { eq: $slug }) {
       id
-      fixed(width: 200, height: 200, resizingBehavior: PAD) {
-        base64
-        tracedSVG
-        aspectRatio
-        width
-        height
-        src
-        srcSet
-        srcWebp
-        srcSetWebp
+      name
+      logo {
+        id
+        fixed(width: 200, height: 200, resizingBehavior: PAD) {
+          base64
+          tracedSVG
+          aspectRatio
+          width
+          height
+          src
+          srcSet
+          srcWebp
+          srcSetWebp
+        }
+        localFile {
+          extension
+          publicURL
+        }
       }
+      slug
     }
-    slug
-  }
   }
 `
