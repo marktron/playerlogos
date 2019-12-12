@@ -46,7 +46,6 @@ export const pageQuery = graphql`
           id
           fixed(width: 200, height: 200, resizingBehavior: PAD) {
             base64
-            tracedSVG
             aspectRatio
             width
             height
