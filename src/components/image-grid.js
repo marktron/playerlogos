@@ -40,6 +40,10 @@ LogoGrid.defaultProps = {
 }
 const LogoTile = styled("a")(
   {
+    img: {
+      width: "100%",
+      height: "auto",
+    },
     "&:hover": {
       borderColor: "orange",
     },
