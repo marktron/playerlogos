@@ -94,7 +94,7 @@ const ImageGrid = props => {
         const currentPlayer =
           players.length === 1 ? players[0] : findPlayer(players, logo.node.id)
         const currentPlayerLogo = logo.node ? logo.node : logo
-        return (
+        return currentPlayer && (
           <LogoTile
             key={currentPlayerLogo.id}
             href={`/${currentPlayer.slug}`}

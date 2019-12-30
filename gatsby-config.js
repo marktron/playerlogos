@@ -1,5 +1,13 @@
 require('dotenv').config()
 
+
+let contentfulConfig = {
+  spaceId: `${process.env.CONTENTFUL_SPACE_ID}`,
+  accessToken: `${process.env.CONTENTFUL_ACCESS_TOKEN}`,
+  host: `${process.env.CONTENTFUL_HOST}`,
+  downloadLocal: true
+}
+
 module.exports = {
   siteMetadata: {
     title: `Player Logos`,
@@ -27,11 +35,12 @@ module.exports = {
     },
     {
       resolve: `gatsby-source-contentful`,
-      options: {
-        spaceId: `${process.env.CONTENTFUL_SPACE_ID}`,
-        accessToken: `${process.env.CONTENTFUL_ACCESS_TOKEN}`,
-        downloadLocal: true,
-      },
+      options: contentfulConfig
+      // options: {
+      //   spaceId: `${process.env.CONTENTFUL_SPACE_ID}`,
+      //   accessToken: `${process.env.CONTENTFUL_ACCESS_TOKEN}`,
+      //   downloadLocal: true,
+      // },
     },
     {
       resolve: `gatsby-transformer-remark`,
